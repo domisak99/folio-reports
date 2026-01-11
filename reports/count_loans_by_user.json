@@ -15,5 +15,35 @@
             "type": "date",
             "required": false
         }
+    ],
+    "columns": [
+        {
+            "name": "user_id",
+            "displayName": "ID uživatele"
+        },
+        {
+            "name": "username",
+            "displayName": "Uživatelské jméno"
+        },
+        {
+            "name": "first_name",
+            "displayName": "Jméno"
+        },
+        {
+            "name": "last_name",
+            "displayName": "Příjmení"
+        },
+        {
+            "name": "email",
+            "displayName": "Email"
+        },
+        {
+            "name": "patron_group",
+            "displayName": "Skupina čtenářů"
+        },
+        {
+            "name": "loan_count",
+            "displayName": "Počet výpůjček"
+        }
     ]
 }
