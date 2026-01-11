@@ -6,22 +6,22 @@ CREATE FUNCTION count_loans_by_user(
     start_date date DEFAULT '1000-01-01',
     end_date date DEFAULT '3000-01-01')
 RETURNS TABLE(
-    user_id uuid,
-    username text,
-    first_name text,
-    last_name text,
-    email text,
-    patron_group text,
-    loan_count bigint)
+    "ID uživatele" uuid,
+    "Uživatelské jméno" text,
+    "Jméno" text,
+    "Příjmení" text,
+    "Email" text,
+    "Skupina čtenářů" text,
+    "Počet výpůjček" bigint)
 AS $$
 SELECT 
-    jsonb_extract_path_text(l.jsonb, 'userId')::uuid AS user_id,
-    jsonb_extract_path_text(u.jsonb, 'username') AS username,
-    jsonb_extract_path_text(u.jsonb, 'personal', 'firstName') AS first_name,
-    jsonb_extract_path_text(u.jsonb, 'personal', 'lastName') AS last_name,
-    jsonb_extract_path_text(u.jsonb, 'personal', 'email') AS email,
-    jsonb_extract_path_text(u.jsonb, 'patronGroup') AS patron_group,
-    count(*) AS loan_count
+    jsonb_extract_path_text(l.jsonb, 'userId')::uuid AS "ID uživatele",
+    jsonb_extract_path_text(u.jsonb, 'username') AS "Uživatelské jméno",
+    jsonb_extract_path_text(u.jsonb, 'personal', 'firstName') AS "Jméno",
+    jsonb_extract_path_text(u.jsonb, 'personal', 'lastName') AS "Příjmení",
+    jsonb_extract_path_text(u.jsonb, 'personal', 'email') AS "Email",
+    jsonb_extract_path_text(u.jsonb, 'patronGroup') AS "Skupina čtenářů",
+    count(*) AS "Počet výpůjček"
 FROM folio_circulation.loan l
 LEFT JOIN folio_users.users u 
     ON jsonb_extract_path_text(l.jsonb, 'userId')::uuid = u.id
@@ -34,7 +34,7 @@ GROUP BY
     jsonb_extract_path_text(u.jsonb, 'personal', 'lastName'),
     jsonb_extract_path_text(u.jsonb, 'personal', 'email'),
     jsonb_extract_path_text(u.jsonb, 'patronGroup')
-ORDER BY loan_count DESC
+ORDER BY "Počet výpůjček" DESC
 $$
 LANGUAGE SQL
 STABLE
