@@ -1,0 +1,19 @@
+{
+    "displayName": "Počet výpůjček podle uživatelů",
+    "description": "Počet výpůjček a informace o uživatelích za dané období",
+    "instructions": "Zadejte parametry",
+    "parameters": [
+        {
+            "name": "start_date",
+            "displayName": "Datum výpůjčky od",
+            "type": "date",
+            "required": false
+        },
+        {
+            "name": "end_date",
+            "displayName": "Datum výpůjčky do",
+            "type": "date",
+            "required": false
+        }
+    ]
+}

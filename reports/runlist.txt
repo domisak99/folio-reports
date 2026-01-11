@@ -1,3 +1,4 @@
 count_loans.sql
 count_payments.sql
 count_payments2.sql
+count_loans_by_user.sql
