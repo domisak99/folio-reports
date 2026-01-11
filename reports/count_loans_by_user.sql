@@ -6,13 +6,13 @@ CREATE FUNCTION count_loans_by_user(
     start_date date DEFAULT '1000-01-01',
     end_date date DEFAULT '3000-01-01')
 RETURNS TABLE(
-    id_uzivatele uuid,
-    uzivatelske_jmeno text,
-    jmeno text,
-    prijmeni text,
-    email text,
-    skupina_ctenaru text,
-    pocet_vypujcek bigint)
+    "ID uživatele" uuid,
+    "Uživatelské jméno" text,
+    "Jméno" text,
+    "Příjmení" text,
+    "Email" text,
+    "Skupina čtenářů" text,
+    "Počet výpůjček" bigint)
 AS $$
 SELECT 
     jsonb_extract_path_text(l.jsonb, 'userId')::uuid AS "ID uživatele",
@@ -34,7 +34,7 @@ GROUP BY
     jsonb_extract_path_text(u.jsonb, 'personal', 'lastName'),
     jsonb_extract_path_text(u.jsonb, 'personal', 'email'),
     jsonb_extract_path_text(u.jsonb, 'patronGroup')
-ORDER BY pocet_vypujcek DESC
+ORDER BY "Počet výpůjček" DESC
 $$
 LANGUAGE SQL
 STABLE
