@@ -10,13 +10,14 @@ RETURNS TABLE(
     payment_count bigint,
     total_amount numeric(19,2))
 AS $$
-SELECT user_id,
+SELECT jsonb_extract_path_text(jsonb, 'userId')::uuid AS user_id,
        count(*) AS payment_count,
-       sum(amount_action) AS total_amount
-    FROM folio_feesfines.feefineactions__
-    WHERE type_action = 'Payment'
-      AND start_date <= date_action AND date_action < end_date
-    GROUP BY user_id
+       sum(jsonb_extract_path_text(jsonb, 'amountAction')::numeric) AS total_amount
+    FROM folio_feesfines.feefineactions
+    WHERE jsonb_extract_path_text(jsonb, 'typeAction') = 'Payment'
+      AND start_date <= (jsonb_extract_path_text(jsonb, 'dateAction')::timestamptz)::date 
+      AND (jsonb_extract_path_text(jsonb, 'dateAction')::timestamptz)::date < end_date
+    GROUP BY jsonb_extract_path_text(jsonb, 'userId')
 $$
 LANGUAGE SQL
 STABLE
