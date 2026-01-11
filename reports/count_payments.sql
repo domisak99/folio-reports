@@ -13,7 +13,7 @@ AS $$
 SELECT user_id,
        count(*) AS payment_count,
        sum(amount_action) AS total_amount
-    FROM folio_feesfines.feefineactions__t
+    FROM folio_feesfines.feefineactions__
     WHERE type_action = 'Payment'
       AND start_date <= date_action AND date_action < end_date
     GROUP BY user_id
