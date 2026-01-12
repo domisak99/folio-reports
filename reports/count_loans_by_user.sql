@@ -7,7 +7,7 @@ CREATE FUNCTION count_loans_by_user(
     end_date date DEFAULT '3000-01-01')
 RETURNS TABLE(
     id_uzivatele uuid,
-    "Uživatelské jméno" text,
+    uzivatelske_jmeno text,
     jmeno text,
     prijmeni text,
     email text,
@@ -16,7 +16,7 @@ RETURNS TABLE(
 AS $$
 SELECT 
     jsonb_extract_path_text(l.jsonb, 'userId')::uuid AS id_uzivatele,
-    jsonb_extract_path_text(u.jsonb, 'username') AS "Uživatelské jméno",
+    jsonb_extract_path_text(u.jsonb, 'username') AS uzivatelske_jmeno,
     jsonb_extract_path_text(u.jsonb, 'personal', 'firstName') AS jmeno,
     jsonb_extract_path_text(u.jsonb, 'personal', 'lastName') AS prijmeni,
     jsonb_extract_path_text(u.jsonb, 'personal', 'email') AS email,
