@@ -5,13 +5,13 @@
     "parameters": [
         {
             "name": "start_date",
-            "displayName": "Datum platby od",
+            "displayName": "Datum od",
             "type": "date",
             "required": false
         },
         {
             "name": "end_date",
-            "displayName": "Datum platby do",
+            "displayName": "Datum do",
             "type": "date",
             "required": false
         }
