@@ -2,7 +2,7 @@
 
 DROP FUNCTION IF EXISTS count_payments2;
 
-CREATE FUNCTION count_payments(
+CREATE FUNCTION count_payments2(
     start_date date DEFAULT '1000-01-01',
     end_date date DEFAULT '3000-01-01')
 RETURNS TABLE(
